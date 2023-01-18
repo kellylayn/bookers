@@ -16,7 +16,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    # @book = Book.find(params[:id])
+    @book = Book.find(params[:id])
   end
 
   def edit
@@ -26,12 +26,14 @@ class BooksController < ApplicationController
   def apdate
     book = Book.find(params[:id])
     book.update(book_params)
+    flash[:notice] = "Book was successfully update."
     redirect_to book_path(book.id)
   end
 
   def destroy
     book = Book.find(params[:id])
     book.destroy
+    flash[:notice] = "Book was successfully destroy."
     redirect_to '/books'
   end
 
